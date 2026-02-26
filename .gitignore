@@ -1,0 +1,17 @@
+# PDFs and branding assets (not part of website)
+*.pdf
+AMRA Logos/
+
+# Temporary/intermediate build files
+crown-point.png
+map-test.svg
+svg-inner.txt
+us-map-clean.svg
+us-states.json
+us-states.svg
+
+# Claude config
+.claude/
+
+# macOS
+.DS_Store

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMRA Partners | Healthcare Real Estate Investment</title>
+    <meta name="description" content="AMRA Partners acquires and manages high-quality medical office properties across select U.S. growth markets. Healthcare real estate investment.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== VARIABLES ===== */
+        :root {
+            --primary: #0C343D;
+            --primary-light: #14505e;
+            --secondary: #424240;
+            --accent: #758B96;
+            --warm-gray: #8A8982;
+            --light: #F3F3F3;
+            --lighter: #FAFAFA;
+            --border: #DFDEDE;
+            --white: #FFFFFF;
+            --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-body: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body);
+            color: var(--secondary);
+            line-height: 1.7;
+            background: var(--white);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; line-height: 1.25; color: var(--primary); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== NAVIGATION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 0;
+            transition: all 0.4s ease;
+        }
+        .nav.scrolled {
+            background: rgba(12, 52, 61, 0.97);
+            padding: 1rem 0;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.1);
+        }
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .nav-logo svg {
+            height: 28px;
+            width: auto;
+            transition: opacity 0.3s;
+        }
+        .nav-logo:hover svg { opacity: 0.8; }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.8);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--white);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Mobile menu */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: all 0.3s;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(165deg, #0a2d35 0%, var(--primary) 40%, #0f3e49 100%);
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(117,139,150,0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(117,139,150,0.04) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-logo {
+            width: min(500px, 70vw);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+        .hero-subtitle {
+            font-family: var(--font-body);
+            font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.6s forwards;
+        }
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 0.02em;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.9s forwards;
+        }
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+        .hero-scroll span {
+            display: block;
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+            margin: 0 auto;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        .section {
+            padding: 7rem 0;
+        }
+        .section--light {
+            background: var(--light);
+        }
+        .section--dark {
+            background: var(--primary);
+            color: var(--white);
+        }
+        .section--dark h2,
+        .section--dark h3,
+        .section--dark h4 {
+            color: var(--white);
+        }
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .section--dark .section-label {
+            color: rgba(255,255,255,0.5);
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1.5rem;
+        }
+        .section-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--warm-gray);
+            max-width: 680px;
+        }
+        .section--dark .section-intro {
+            color: rgba(255,255,255,0.65);
+        }
+        .divider {
+            width: 50px;
+            height: 1px;
+            background: var(--accent);
+            margin: 2rem 0;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: start;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 1.85;
+        }
+        .about-text p:last-child { margin-bottom: 0; }
+
+        /* ===== STATS ===== */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            padding-top: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .stat {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 600;
+            color: var(--primary);
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ===== THESIS ===== */
+        .thesis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .thesis-card {
+            padding: 2.5rem;
+            background: var(--white);
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+        .thesis-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 40px rgba(12,52,61,0.06);
+            transform: translateY(-2px);
+        }
+        .thesis-card-number {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .thesis-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+        .thesis-card p {
+            font-size: 0.95rem;
+            color: var(--warm-gray);
+            line-height: 1.75;
+        }
+
+        /* ===== PORTFOLIO ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .property-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        .property-card:hover {
+            box-shadow: 0 12px 48px rgba(12,52,61,0.08);
+            transform: translateY(-3px);
+        }
+        .property-image {
+            height: 240px;
+            background: linear-gradient(145deg, var(--primary) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Subtle architectural grid pattern overlay */
+        .property-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .property-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(12,52,61,0.4), transparent);
+        }
+        .property-image-label {
+            position: absolute;
+            bottom: 1rem;
+            left: 1.5rem;
+            z-index: 1;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+        /* When real photos are added, use: */
+        .property-image.has-photo {
+            background-size: cover;
+            background-position: center;
+        }
+        .property-body {
+            padding: 1.75rem;
+        }
+        .property-type {
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+        }
+        .property-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .property-location {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            margin-bottom: 1rem;
+        }
+        .property-desc {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--secondary);
+        }
+        .property-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .property-tag {
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 0.3rem 0.75rem;
+            background: var(--light);
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== MARKETS / MAP ===== */
+        .markets-content {
+            margin-top: 3rem;
+        }
+        .map-container {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px;
+            padding: 2rem 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .us-map {
+            width: 100%;
+            max-width: 850px;
+            height: auto;
+            min-height: 350px;
+            margin: 0 auto;
+            display: block;
+            border: none;
+        }
+        .map-legend {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1.5rem;
+        }
+        .map-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .map-legend-swatch {
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+        }
+        .map-legend-swatch--se { background: rgba(100,190,210,0.75); }
+        .map-legend-swatch--mw { background: rgba(140,165,175,0.75); }
+        .map-legend-swatch--ma { background: rgba(170,215,230,0.7); }
+        .map-legend-swatch--city {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .map-legend-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.03em;
+        }
+        .markets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 2.5rem;
+        }
+        .market-region {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.12);
+        }
+        .market-region h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            color: var(--white);
+        }
+        .market-region-states {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.7;
+        }
+
+        /* ===== APPROACH ===== */
+        .approach-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin-top: 3rem;
+        }
+        .approach-step {
+            padding: 2rem;
+            position: relative;
+            border-left: 1px solid var(--border);
+        }
+        .approach-step:first-child { border-left: none; }
+        .approach-step-num {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--light);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .approach-step h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .approach-step p {
+            font-size: 0.9rem;
+            color: var(--warm-gray);
+            line-height: 1.7;
+        }
+
+        /* ===== TEAM ===== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+        .team-member {
+            display: flex;
+            gap: 2rem;
+            align-items: start;
+        }
+        .team-photo {
+            width: 160px;
+            height: 190px;
+            background: linear-gradient(145deg, var(--primary) 0%, var(--primary-light) 100%);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+        /* When real photos are added: */
+        .team-photo.has-photo {
+            background-size: cover;
+            background-position: center top;
+        }
+        .team-photo-initials {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.3);
+        }
+        .team-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .team-title {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .team-bio {
+            font-size: 0.9rem;
+            line-height: 1.75;
+            color: var(--warm-gray);
+        }
+
+        /* ===== CONTACT / FOOTER ===== */
+        .footer {
+            background: var(--primary);
+            color: var(--white);
+            padding: 5rem 0 3rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.55);
+            margin-top: 1.5rem;
+            max-width: 360px;
+        }
+        .footer-logo svg {
+            height: 32px;
+            width: auto;
+        }
+        .footer-col h4 {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 1.25rem;
+        }
+        .footer-col a,
+        .footer-col p {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.6rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover { color: var(--white); }
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom p {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.35);
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .portfolio-grid { grid-template-columns: 1fr 1fr; }
+            .team-grid { gap: 3rem; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+        }
+        @media (max-width: 768px) {
+            .section { padding: 5rem 0; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(12,52,61,0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+            .nav-toggle { display: flex; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .thesis-grid { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .approach-steps { grid-template-columns: 1fr 1fr; }
+            .approach-step { border-left: none; border-top: 1px solid var(--border); padding: 1.5rem 0; }
+            .approach-step:first-child { border-top: none; }
+            .approach-step:nth-child(2) { border-top: none; }
+            .markets-grid { grid-template-columns: 1fr; }
+            .map-container { padding: 1.5rem 1rem; }
+            .map-legend { gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+            .map-legend-label { font-size: 0.72rem; }
+            .team-grid { grid-template-columns: 1fr; }
+            .team-member { flex-direction: column; gap: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+        @media (max-width: 480px) {
+            .container { padding: 0 1.25rem; }
+            .stats { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+            .approach-steps { grid-template-columns: 1fr; }
+            .approach-step { border-top: 1px solid var(--border); }
+            .approach-step:first-child { border-top: none; }
+            .hero-logo { width: 85vw; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== NAVIGATION ===== -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo" aria-label="AMRA Partners home">
+                <svg viewBox="0 0 364 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M330.949 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939-14.363-36.104 7.152-15.375 28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834h-40.046c3.218-.358 5.602-.954 7.032-1.788h.06zm-8.7-30.988h-23.718l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.119 1.669.119 3.099.596 4.529.477 1.43 1.55 2.741 3.099 3.695 1.43 1.073 3.337 1.668 5.721 1.907h-26.817c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+                    <path d="M223.145 67.697c0 2.86.119 5.483.357 7.747.238 2.384.954 4.29 1.907 5.959.953 1.668 2.265 2.86 4.171 3.814 1.788.953 4.29 1.549 7.509 1.668v.12h-41.83v-.12c3.099-.12 5.602-.715 7.509-1.669 1.907-.953 3.218-2.384 4.171-4.052.834-1.668 1.43-3.576 1.669-5.84.238-2.264.357-4.767.357-7.628V19.308c0-2.86-.12-5.364-.358-7.748-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.384-2.979-4.172-3.933-1.907-.953-4.29-1.43-7.389-1.668h47.911c4.172 0 7.986.596 11.323 1.788 3.337 1.192 6.198 3.695 8.819 7.509 1.669 2.622 2.86 5.364 3.338 8.462.477 3.099.357 6.079-.358 9.058-.834 2.98-2.265 5.721-4.29 8.224-2.026 2.503-4.768 4.41-8.105 5.72-.953.478-2.145.835-3.337 1.193-1.311.477-2.741.834-4.29 1.073 1.907.834 3.337 1.668 4.529 2.503 1.192.834 2.145 1.788 2.979 2.86.715 1.073 1.43 2.265 2.145 3.695l2.503 5.125 3.337 7.033 3.695 7.39c1.192 2.383 2.503 4.648 3.695 6.674 1.192 2.026 2.145 3.576 3.099 4.53 1.073 1.43 2.145 2.383 3.218 2.86.954.596 2.384.953 4.172 1.072v.12h-22.17c-.953-1.789-1.907-3.934-2.86-6.318l-3.337-7.628-3.814-7.986c-1.311-2.622-2.622-5.125-4.053-7.509-1.43-2.384-2.741-4.41-4.052-6.317-1.43-1.907-2.741-3.338-4.053-4.29-1.907-1.312-3.814-2.027-5.72-2.146-2.026-.119-4.172-.238-6.437-.238v23.122l-.019.048zM223.145 43.025h6.317c1.907 0 3.814-.119 5.483-.357 1.669-.238 3.337-.715 4.887-1.43 1.43-.597 2.86-1.55 4.29-2.861 3.576-3.456 5.84-7.628 6.556-12.395.715-4.768.238-9.297-1.669-13.706-1.311-2.86-2.86-5.006-4.529-6.436-1.788-1.43-3.814-2.503-5.959-3.099-2.145-.596-4.529-.953-7.152-.953s-5.364-.12-8.224-.12v41.357z" fill="white"/>
+                    <path d="M194.038.238c-3.814.238-6.913 1.073-9.178 2.741-2.383 1.669-3.695 4.41-4.171 8.343-.238 1.192-.358 2.384-.358 3.695-.119 1.311-.119 2.741-.119 4.29v48.513c0 3.099.12 5.959.477 8.7.358 2.741 1.43 5.006 3.218 6.674 2.384 2.384 5.84 3.695 10.131 3.695v.12h-41.83v-.12c3.099-.12 5.602-.716 7.509-1.669 1.788-.954 3.218-2.145 4.172-3.814.953-1.668 1.549-3.576 1.788-5.84.238-2.264.357-4.886.357-7.747V9.058l-33.253 77.948h-2.622L97.26 10.249v57.567c0 2.86.12 5.483.358 7.748.238 2.384.834 4.29 1.788 5.959.953 1.668 2.265 2.86 4.171 3.813 1.788.954 4.29 1.431 7.39 1.55v.12H80.693v-.12c3.099-.12 5.483-.716 7.39-1.669 1.787-.954 3.217-2.145 4.17-3.814.954-1.668 1.55-3.576 1.789-5.84.238-2.264.477-4.886.477-7.747V19.308c0-2.741-.119-5.244-.357-7.509-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.265-2.979-4.172-3.933s-4.41-1.549-7.509-1.788V.12h29.08l27.891 68.887L166.506.119h27.532v.12z" fill="white"/>
+                    <path d="M57.447 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939L37.067 15.375 44.218 0l28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834H50.296c3.218-.358 5.602-.954 7.033-1.788h.118zm-8.7-30.988H25.029l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.12 1.669.118 3.099.596 4.529.477 1.43 1.549 2.741 3.098 3.695 1.431 1.073 3.338 1.668 5.722 1.907H0c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+                </svg>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#approach">Approach</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#team">Leadership</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle" id="navToggle" role="button" aria-label="Toggle menu" tabindex="0">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <svg class="hero-logo" viewBox="0 0 364 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M330.949 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939-14.363-36.104 7.152-15.375 28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834h-40.046c3.218-.358 5.602-.954 7.032-1.788h.06zm-8.7-30.988h-23.718l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.119 1.669.119 3.099.596 4.529.477 1.43 1.55 2.741 3.099 3.695 1.43 1.073 3.337 1.668 5.721 1.907h-26.817c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+            <path d="M223.145 67.697c0 2.86.119 5.483.357 7.747.238 2.384.954 4.29 1.907 5.959.953 1.668 2.265 2.86 4.171 3.814 1.788.953 4.29 1.549 7.509 1.668v.12h-41.83v-.12c3.099-.12 5.602-.715 7.509-1.669 1.907-.953 3.218-2.384 4.171-4.052.834-1.668 1.43-3.576 1.669-5.84.238-2.264.357-4.767.357-7.628V19.308c0-2.86-.12-5.364-.358-7.748-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.384-2.979-4.172-3.933-1.907-.953-4.29-1.43-7.389-1.668h47.911c4.172 0 7.986.596 11.323 1.788 3.337 1.192 6.198 3.695 8.819 7.509 1.669 2.622 2.86 5.364 3.338 8.462.477 3.099.357 6.079-.358 9.058-.834 2.98-2.265 5.721-4.29 8.224-2.026 2.503-4.768 4.41-8.105 5.72-.953.478-2.145.835-3.337 1.193-1.311.477-2.741.834-4.29 1.073 1.907.834 3.337 1.668 4.529 2.503 1.192.834 2.145 1.788 2.979 2.86.715 1.073 1.43 2.265 2.145 3.695l2.503 5.125 3.337 7.033 3.695 7.39c1.192 2.383 2.503 4.648 3.695 6.674 1.192 2.026 2.145 3.576 3.099 4.53 1.073 1.43 2.145 2.383 3.218 2.86.954.596 2.384.953 4.172 1.072v.12h-22.17c-.953-1.789-1.907-3.934-2.86-6.318l-3.337-7.628-3.814-7.986c-1.311-2.622-2.622-5.125-4.053-7.509-1.43-2.384-2.741-4.41-4.052-6.317-1.43-1.907-2.741-3.338-4.053-4.29-1.907-1.312-3.814-2.027-5.72-2.146-2.026-.119-4.172-.238-6.437-.238v23.122l-.019.048zM223.145 43.025h6.317c1.907 0 3.814-.119 5.483-.357 1.669-.238 3.337-.715 4.887-1.43 1.43-.597 2.86-1.55 4.29-2.861 3.576-3.456 5.84-7.628 6.556-12.395.715-4.768.238-9.297-1.669-13.706-1.311-2.86-2.86-5.006-4.529-6.436-1.788-1.43-3.814-2.503-5.959-3.099-2.145-.596-4.529-.953-7.152-.953s-5.364-.12-8.224-.12v41.357z" fill="white"/>
+            <path d="M194.038.238c-3.814.238-6.913 1.073-9.178 2.741-2.383 1.669-3.695 4.41-4.171 8.343-.238 1.192-.358 2.384-.358 3.695-.119 1.311-.119 2.741-.119 4.29v48.513c0 3.099.12 5.959.477 8.7.358 2.741 1.43 5.006 3.218 6.674 2.384 2.384 5.84 3.695 10.131 3.695v.12h-41.83v-.12c3.099-.12 5.602-.716 7.509-1.669 1.788-.954 3.218-2.145 4.172-3.814.953-1.668 1.549-3.576 1.788-5.84.238-2.264.357-4.886.357-7.747V9.058l-33.253 77.948h-2.622L97.26 10.249v57.567c0 2.86.12 5.483.358 7.748.238 2.384.834 4.29 1.788 5.959.953 1.668 2.265 2.86 4.171 3.813 1.788.954 4.29 1.431 7.39 1.55v.12H80.693v-.12c3.099-.12 5.483-.716 7.39-1.669 1.787-.954 3.217-2.145 4.17-3.814.954-1.668 1.55-3.576 1.789-5.84.238-2.264.477-4.886.477-7.747V19.308c0-2.741-.119-5.244-.357-7.509-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.265-2.979-4.172-3.933s-4.41-1.549-7.509-1.788V.12h29.08l27.891 68.887L166.506.119h27.532v.12z" fill="white"/>
+            <path d="M57.447 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939L37.067 15.375 44.218 0l28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834H50.296c3.218-.358 5.602-.954 7.033-1.788h.118zm-8.7-30.988H25.029l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.12 1.669.118 3.099.596 4.529.477 1.43 1.549 2.741 3.098 3.695 1.431 1.073 3.338 1.668 5.722 1.907H0c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+        </svg>
+        <p class="hero-subtitle">American Medical Real Assets</p>
+        <p class="hero-tagline">Healthcare Real Estate Investment</p>
+        <div class="hero-scroll"><span></span></div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="reveal">
+                    <p class="section-label">About AMRA</p>
+                    <h2 class="section-title">Focused expertise in<br>healthcare real estate</h2>
+                    <div class="divider"></div>
+                </div>
+                <div class="about-text reveal">
+                    <p>AMRA Partners acquires and manages high-quality medical office properties in select U.S. growth markets. Through a disciplined, relationship-driven approach, we identify healthcare real estate assets positioned for long-term value creation and stable cash flow generation.</p>
+                    <p>Our focus on the medical office sector is driven by powerful demographic and economic tailwinds&mdash;an aging population, rising outpatient utilization, and the essential nature of healthcare services&mdash;which together underpin one of the most resilient segments of commercial real estate.</p>
+                </div>
+            </div>
+            <div class="stats reveal">
+                <div class="stat">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Properties Acquired</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">150K+</div>
+                    <div class="stat-label">Square Feet</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">States</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== INVESTMENT THESIS ===== -->
+    <section class="section section--light" id="thesis">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Investment Thesis</p>
+                <h2 class="section-title">Why healthcare real estate</h2>
+                <p class="section-intro">Medical office buildings represent one of the most compelling opportunities in commercial real estate, supported by fundamental demographic and economic forces.</p>
+            </div>
+            <div class="thesis-grid">
+                <div class="thesis-card reveal">
+                    <div class="thesis-card-number">01</div>
+                    <h3>Demographic Tailwinds</h3>
+                    <p>The U.S. senior population is projected to reach 85 million by 2050, driving sustained growth in healthcare demand and outpatient services utilization across the country.</p>
+                </div>
+                <div class="thesis-card reveal">
+                    <div class="thesis-card-number">02</div>
+                    <h3>Recession-Resistant Demand</h3>
+                    <p>Medical services are essential regardless of economic conditions. Healthcare tenants maintain stable occupancy through market cycles, backed by government and insurance reimbursement.</p>
+                </div>
+                <div class="thesis-card reveal">
+                    <div class="thesis-card-number">03</div>
+                    <h3>Stable, Predictable Cash Flows</h3>
+                    <p>Long-term leases with credit-rated healthcare tenants provide dependable income streams. Built-in rent escalations and low tenant turnover further enhance cash flow reliability.</p>
+                </div>
+                <div class="thesis-card reveal">
+                    <div class="thesis-card-number">04</div>
+                    <h3>Institutional Demand</h3>
+                    <p>Growing institutional appetite for medical office portfolios creates strong exit opportunities. The sector has attracted billions in capital from leading institutional investors in recent years.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OUR APPROACH ===== -->
+    <section class="section" id="approach">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Our Approach</p>
+                <h2 class="section-title">A disciplined process</h2>
+                <p class="section-intro">We apply institutional rigor to an underserved segment of the market, leveraging deep relationships and data-driven analysis at every stage.</p>
+            </div>
+            <div class="approach-steps reveal">
+                <div class="approach-step">
+                    <div class="approach-step-num">01</div>
+                    <h4>Identify</h4>
+                    <p>Source off-market and relationship-driven opportunities in high-growth healthcare markets through our proprietary database and network.</p>
+                </div>
+                <div class="approach-step">
+                    <div class="approach-step-num">02</div>
+                    <h4>Underwrite</h4>
+                    <p>Apply rigorous financial, tenant, and sub-market analysis to identify assets with strong current yields and embedded growth potential.</p>
+                </div>
+                <div class="approach-step">
+                    <div class="approach-step-num">03</div>
+                    <h4>Acquire &amp; Manage</h4>
+                    <p>Execute acquisitions with conservative capital structures and actively manage properties to optimize tenant relationships and operating performance.</p>
+                </div>
+                <div class="approach-step">
+                    <div class="approach-step-num">04</div>
+                    <h4>Aggregate &amp; Exit</h4>
+                    <p>Construct diversified portfolios that command institutional premiums at exit, delivering enhanced returns through strategic consolidation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="section section--light" id="portfolio">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Select Properties</p>
+                <h2 class="section-title">Our portfolio</h2>
+                <p class="section-intro">We target medical office buildings with established healthcare tenants in markets experiencing population growth and rising healthcare demand.</p>
+            </div>
+            <div class="portfolio-grid">
+                <!-- PROPERTY 1: San Antonio -->
+                <div class="property-card reveal">
+                    <div class="property-image has-photo" style="background-image: url('san antonio picture.jpg'); background-size: cover; background-position: center;">
+                        <div class="property-image-label">San Antonio, TX</div>
+                    </div>
+                    <div class="property-body">
+                        <div class="property-type">Critical Care &amp; Vascular Surgery</div>
+                        <div class="property-name">Downtown Medical Campus</div>
+                        <div class="property-location">San Antonio, Texas</div>
+                        <p class="property-desc">A 2.43-acre city block comprising a fully leased critical-care medical facility within a rapidly developing Opportunity Zone in downtown San Antonio. The campus serves as a regional hub for vascular surgery and dialysis services.</p>
+                        <div class="property-tags">
+                            <span class="property-tag">NNN Lease</span>
+                            <span class="property-tag">Opportunity Zone</span>
+                            <span class="property-tag">Multi-Tenant</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROPERTY 2: Tulsa -->
+                <div class="property-card reveal">
+                    <div class="property-image has-photo" style="background-image: url('9330 tulsa.png'); background-size: cover; background-position: center;">
+                        <div class="property-image-label">Tulsa, OK</div>
+                    </div>
+                    <div class="property-body">
+                        <div class="property-type">Medical Office &amp; Laboratory</div>
+                        <div class="property-name">Regional Laboratory Campus</div>
+                        <div class="property-location">Tulsa, Oklahoma</div>
+                        <p class="property-desc">A 34,000+ square foot medical office and administration building on a 5.56-acre site, fully leased to a publicly traded, credit-rated national laboratory services provider. Includes a 3-acre development parcel.</p>
+                        <div class="property-tags">
+                            <span class="property-tag">Credit Tenant</span>
+                            <span class="property-tag">5.56 Acres</span>
+                            <span class="property-tag">34,000+ SF</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PROPERTY 3: Crown Point -->
+                <div class="property-card reveal">
+                    <div class="property-image has-photo" style="background-image: url('APAC Crown Point.png'); background-size: cover; background-position: center;">
+                        <div class="property-image-label">Crown Point, IN</div>
+                    </div>
+                    <div class="property-body">
+                        <div class="property-type">Ambulatory Surgery Center</div>
+                        <div class="property-name">APAC Surgery Center</div>
+                        <div class="property-location">Crown Point, Indiana</div>
+                        <p class="property-desc">A 13,200 square foot ambulatory surgery center situated within the Chessington Pointe medical condominium park, fully leased to a regional pain management physician group. Located in the Chicago MSA with convenient access to I-65.</p>
+                        <div class="property-tags">
+                            <span class="property-tag">ASC</span>
+                            <span class="property-tag">NNN Long Term Lease</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TARGET MARKETS ===== -->
+    <section class="section section--dark" id="markets">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Geographic Focus</p>
+                <h2 class="section-title">Target markets</h2>
+                <p class="section-intro">Our opportunistic, relationship-driven approach focuses on U.S. markets with proven growth, favorable demographics, and healthcare infrastructure expansion.</p>
+            </div>
+            <div class="markets-content reveal">
+                <div class="map-container">
+                    <object data="us-map.svg" type="image/svg+xml" class="us-map" aria-label="Map of AMRA target markets across the United States">
+                        <p>US map showing AMRA target markets</p>
+                    </object>
+                    <div class="map-legend">
+                        <div class="map-legend-item">
+                            <div class="map-legend-swatch map-legend-swatch--se"></div>
+                            <span class="map-legend-label">Southeast</span>
+                        </div>
+                        <div class="map-legend-item">
+                            <div class="map-legend-swatch map-legend-swatch--mw"></div>
+                            <span class="map-legend-label">Midwest</span>
+                        </div>
+                        <div class="map-legend-item">
+                            <div class="map-legend-swatch map-legend-swatch--ma"></div>
+                            <span class="map-legend-label">Mid-Atlantic</span>
+                        </div>
+                        <div class="map-legend-item">
+                            <div class="map-legend-swatch map-legend-swatch--city"></div>
+                            <span class="map-legend-label">Portfolio Properties</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="markets-grid">
+                    <div class="market-region">
+                        <h4>Southeast</h4>
+                        <p class="market-region-states">Florida &middot; South Carolina &middot; North Carolina &middot; Georgia &middot; Alabama &middot; Tennessee</p>
+                    </div>
+                    <div class="market-region">
+                        <h4>Midwest</h4>
+                        <p class="market-region-states">Oklahoma &middot; Texas &middot; Indiana &middot; Missouri &middot; Nebraska</p>
+                    </div>
+                    <div class="market-region">
+                        <h4>Mid-Atlantic</h4>
+                        <p class="market-region-states">Virginia &middot; Maryland &middot; Washington, D.C.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LEADERSHIP ===== -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="reveal">
+                <p class="section-label">Leadership</p>
+                <h2 class="section-title">Our team</h2>
+                <p class="section-intro">AMRA is led by seasoned investment professionals with decades of experience across institutional real asset management, portfolio construction, and commercial real estate operations.</p>
+            </div>
+            <div class="team-grid reveal">
+                <div class="team-member">
+                    <div class="team-photo has-photo" style="background-image: url('hunter pic.png'); background-size: cover; background-position: center top;">
+                    </div>
+                    <div class="team-info">
+                        <h3>Hunter Current</h3>
+                        <div class="team-title">Managing Partner</div>
+                        <p class="team-bio">Over 15 years of experience managing diversified commercial real estate portfolios across the United States and internationally. Specializes in asset underwriting, commercial real estate valuation, and portfolio construction for investment vehicles. Extensive background in operating portfolios comprising large-scale agricultural, natural resource, and real asset infrastructure on behalf of private equity funds and family offices.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo has-photo" style="background-image: url('jesse pic.png'); background-size: cover; background-position: center top; transform: scaleX(-1);">
+                    </div>
+                    <div class="team-info">
+                        <h3>Jesse Solomon</h3>
+                        <div class="team-title">Managing Partner</div>
+                        <p class="team-bio">Over two decades of experience in institutional investing, portfolio management, and real asset strategy. Previously managed a multi-billion-dollar global investment platform overseeing equities and real assets for sovereign wealth, family office, and endowment clients. Deep expertise in macro-driven, demographic-led investment strategies across the United States and international markets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT / FOOTER ===== -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg viewBox="0 0 364 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M330.949 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939-14.363-36.104 7.152-15.375 28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834h-40.046c3.218-.358 5.602-.954 7.032-1.788h.06zm-8.7-30.988h-23.718l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.119 1.669.119 3.099.596 4.529.477 1.43 1.55 2.741 3.099 3.695 1.43 1.073 3.337 1.668 5.721 1.907h-26.817c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+                            <path d="M223.145 67.697c0 2.86.119 5.483.357 7.747.238 2.384.954 4.29 1.907 5.959.953 1.668 2.265 2.86 4.171 3.814 1.788.953 4.29 1.549 7.509 1.668v.12h-41.83v-.12c3.099-.12 5.602-.715 7.509-1.669 1.907-.953 3.218-2.384 4.171-4.052.834-1.668 1.43-3.576 1.669-5.84.238-2.264.357-4.767.357-7.628V19.308c0-2.86-.12-5.364-.358-7.748-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.384-2.979-4.172-3.933-1.907-.953-4.29-1.43-7.389-1.668h47.911c4.172 0 7.986.596 11.323 1.788 3.337 1.192 6.198 3.695 8.819 7.509 1.669 2.622 2.86 5.364 3.338 8.462.477 3.099.357 6.079-.358 9.058-.834 2.98-2.265 5.721-4.29 8.224-2.026 2.503-4.768 4.41-8.105 5.72-.953.478-2.145.835-3.337 1.193-1.311.477-2.741.834-4.29 1.073 1.907.834 3.337 1.668 4.529 2.503 1.192.834 2.145 1.788 2.979 2.86.715 1.073 1.43 2.265 2.145 3.695l2.503 5.125 3.337 7.033 3.695 7.39c1.192 2.383 2.503 4.648 3.695 6.674 1.192 2.026 2.145 3.576 3.099 4.53 1.073 1.43 2.145 2.383 3.218 2.86.954.596 2.384.953 4.172 1.072v.12h-22.17c-.953-1.789-1.907-3.934-2.86-6.318l-3.337-7.628-3.814-7.986c-1.311-2.622-2.622-5.125-4.053-7.509-1.43-2.384-2.741-4.41-4.052-6.317-1.43-1.907-2.741-3.338-4.053-4.29-1.907-1.312-3.814-2.027-5.72-2.146-2.026-.119-4.172-.238-6.437-.238v23.122l-.019.048zM223.145 43.025h6.317c1.907 0 3.814-.119 5.483-.357 1.669-.238 3.337-.715 4.887-1.43 1.43-.597 2.86-1.55 4.29-2.861 3.576-3.456 5.84-7.628 6.556-12.395.715-4.768.238-9.297-1.669-13.706-1.311-2.86-2.86-5.006-4.529-6.436-1.788-1.43-3.814-2.503-5.959-3.099-2.145-.596-4.529-.953-7.152-.953s-5.364-.12-8.224-.12v41.357z" fill="white"/>
+                            <path d="M194.038.238c-3.814.238-6.913 1.073-9.178 2.741-2.383 1.669-3.695 4.41-4.171 8.343-.238 1.192-.358 2.384-.358 3.695-.119 1.311-.119 2.741-.119 4.29v48.513c0 3.099.12 5.959.477 8.7.358 2.741 1.43 5.006 3.218 6.674 2.384 2.384 5.84 3.695 10.131 3.695v.12h-41.83v-.12c3.099-.12 5.602-.716 7.509-1.669 1.788-.954 3.218-2.145 4.172-3.814.953-1.668 1.549-3.576 1.788-5.84.238-2.264.357-4.886.357-7.747V9.058l-33.253 77.948h-2.622L97.26 10.249v57.567c0 2.86.12 5.483.358 7.748.238 2.384.834 4.29 1.788 5.959.953 1.668 2.265 2.86 4.171 3.813 1.788.954 4.29 1.431 7.39 1.55v.12H80.693v-.12c3.099-.12 5.483-.716 7.39-1.669 1.787-.954 3.217-2.145 4.17-3.814.954-1.668 1.55-3.576 1.789-5.84.238-2.264.477-4.886.477-7.747V19.308c0-2.741-.119-5.244-.357-7.509-.238-2.264-.834-4.171-1.788-5.84-.954-1.668-2.265-2.979-4.172-3.933s-4.41-1.549-7.509-1.788V.12h29.08l27.891 68.887L166.506.119h27.532v.12z" fill="white"/>
+                            <path d="M57.447 85.098c1.55-.953 2.622-2.145 3.218-3.456.477-1.192.715-2.622.596-4.062-.119-1.43-.477-2.86-1.073-4.29l-1.668-4.41-3.337-8.462-3.695-8.939L37.067 15.375 44.218 0l28.485 68.77c1.192 3.099 2.503 6.079 3.933 8.939 1.43 2.98 3.099 5.116 5.006 6.546 1.192.954 2.503 1.55 3.933 1.788 1.43.358 2.86.596 4.767.834H50.296c3.218-.358 5.602-.954 7.033-1.788h.118zm-8.7-30.988H25.029l-4.887 12.514c-.715 1.669-1.311 3.337-1.788 5.006-.596 1.788-.953 3.456-.953 5.125-.12 1.669.118 3.099.596 4.529.477 1.43 1.549 2.741 3.098 3.695 1.431 1.073 3.338 1.668 5.722 1.907H0c3.456-.238 6.317-1.669 8.462-4.171 2.145-2.384 3.933-5.364 5.602-8.7.596-1.311 1.311-2.979 2.145-4.648l2.86-7.033 16.089-41.71 1.55 3.576-10.73 27.65h21.811l.954 2.622.004.238z" fill="white"/>
+                        </svg>
+                    </div>
+                    <p>AMRA Partners acquires and manages high-quality medical office properties across select U.S. growth markets, delivering stable value through strategic portfolio construction.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <a href="#about">About</a>
+                    <a href="#approach">Approach</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#team">Leadership</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>info@amrapartners.com</p>
+                    <p style="margin-top: 1rem;">AMRA Partners</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AMRA Partners. All rights reserved.</p>
+                <p>American Medical Real Assets</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        // Sticky nav background on scroll
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Scroll reveal animations
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
